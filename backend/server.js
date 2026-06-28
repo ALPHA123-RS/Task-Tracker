@@ -16,9 +16,30 @@ const app = express();
 // Body parser
 app.use(express.json());
 
+// Define allowed origins
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://task-tracker-eight-lilac.vercel.app',
+  process.env.CLIENT_URL
+].filter(Boolean).map(url => url.replace(/\/$/, '')); // Remove trailing slashes
+
 // Enable CORS
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Remove trailing slash from origin just in case
+    const originWithoutSlash = origin.replace(/\/$/, '');
+    
+    if (allowedOrigins.indexOf(originWithoutSlash) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
 }));
 
 // Mount routers
