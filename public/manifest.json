@@ -1,0 +1,17 @@
+{
+  "name": "Task Tracker",
+  "short_name": "Task Tracker",
+  "description": "A futuristic task manager for maximum productivity",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

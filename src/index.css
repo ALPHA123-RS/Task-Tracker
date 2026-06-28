@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased text-gray-200 bg-neon-dark;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-neon-surface/80 backdrop-blur-xl border border-neon-border;
+  }
+  
+  .glass-card {
+    @apply glass rounded-xl shadow-lg hover:shadow-neon-cyan transition-shadow duration-300;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neon-cyan/30 rounded-full hover:bg-neon-cyan/60 transition-colors;
+  }
+}
+
